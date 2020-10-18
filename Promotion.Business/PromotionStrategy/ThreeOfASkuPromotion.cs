@@ -7,25 +7,25 @@ using System.Linq;
 
 namespace Promotion.Business.PromotionStrategy
 {
-    class ThreeOfASkuPromotion : IPromotionStrategy
+    public class ThreeOfASkuPromotion : IPromotionStrategy
     {
-        public double offeredPrice { get; set; }
+        public double OfferedPrice { get; set; }
 
-        public bool isActive { get; set; }
+        public bool IsActive { get; set; }
 
-        public Common.PromotionEnum name { get { return Common.PromotionEnum.ThreeOfASkuPromotion; } }
-        
+        public Common.PromotionEnum Name { get { return Common.PromotionEnum.ThreeOfASkuPromotion; } }
+
 
         public void Apply(List<OrderItem> items)
         {
             var productsA = items.Where(x => x.product.SKU == "A").SingleOrDefault();
 
-            if (productsA != null)
+            if (productsA != null && productsA.Quantity >=3)
             {
                 int quotient = (productsA.Quantity) / 3;
                 int remainder = (productsA.Quantity) % 3;
 
-                double price = (offeredPrice * quotient) + (remainder * productsA.Price);
+                double price = (OfferedPrice * quotient) + (remainder * productsA.Price);
                 productsA.DiscountedPrice = price;
                 productsA.IsDiscountApplied = true;
             }

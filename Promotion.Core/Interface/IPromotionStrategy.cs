@@ -7,10 +7,10 @@ namespace Promotion.Core.Interface
 {
     public interface IPromotionStrategy
     {
-        double offeredPrice { get; set; }
-        Common.PromotionEnum name { get; }
+        double OfferedPrice { get; set; }
+        Common.PromotionEnum Name { get; }
 
-        bool isActive { get; set; }
+        bool IsActive { get; set; }
         void Apply(List<OrderItem> items);
 
     }
