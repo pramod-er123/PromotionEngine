@@ -42,7 +42,7 @@ namespace Promotion.Business
                     discountedAmount += item.IsDiscountApplied == true ? item.DiscountedPrice : item.ActualPrice;
                 }
 
-                _order.TotalAmount = totalAmount;
+                _order.NetAmount = totalAmount;
                 _order.DiscountedAmount = discountedAmount;
 
             }
