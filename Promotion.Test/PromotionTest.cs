@@ -78,8 +78,8 @@ namespace Promotion.Test
             order = manager.CalculateTotal();
 
             //Assert
-            Assert.AreEqual(370, order.DiscountedAmount);
-            Assert.AreEqual(420, order.NetAmount);
+            Assert.AreEqual(280, order.DiscountedAmount);
+            Assert.AreEqual(335, order.NetAmount);
         }
     }
 }
