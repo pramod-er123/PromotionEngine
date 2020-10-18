@@ -7,7 +7,7 @@ namespace Promotion.Core.Interface
 {
     public interface IPromotionStrategy
     {
-        void Apply(List<Product> items);
+        void Apply(List<OrderItem> items);
 
     }
 }
