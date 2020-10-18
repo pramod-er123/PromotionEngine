@@ -9,10 +9,14 @@ namespace Promotion.Business.PromotionStrategy
 {
     class CandDSkuPromotion : IPromotionStrategy
     {
-        private double _offeredPrice { get; set; }
+        public double offeredPrice { get; set; }
+        public bool IsActive { get; set; }
+
+        public Common.PromotionEnum name { get { return Common.PromotionEnum.CandDSkuPromotion; } }
+
         public CandDSkuPromotion(double offeredPrice)
         {
-            _offeredPrice = offeredPrice;
+            this.offeredPrice = offeredPrice;
         }
 
         public void Apply(List<OrderItem> items)
@@ -26,12 +30,12 @@ namespace Promotion.Business.PromotionStrategy
             {
                 if (productsC.Quantity == productsD.Quantity)
                 {
-                    priceAfterDiscount = productsC.Quantity * _offeredPrice;
+                    priceAfterDiscount = productsC.Quantity * offeredPrice;
                 }
                 else if (productsC.Quantity > productsD.Quantity)
                 {
                     int diff = productsC.Quantity - productsD.Quantity;
-                    priceAfterDiscount = (diff * _offeredPrice) + ((productsC.Quantity - diff) * productsC.ActualPrice);
+                    priceAfterDiscount = (diff * offeredPrice) + ((productsC.Quantity - diff) * productsC.ActualPrice);
 
                 }
                 productsC.DiscountedPrice = priceAfterDiscount;

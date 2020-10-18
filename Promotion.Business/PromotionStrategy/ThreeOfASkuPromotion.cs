@@ -9,11 +9,12 @@ namespace Promotion.Business.PromotionStrategy
 {
     class ThreeOfASkuPromotion : IPromotionStrategy
     {
-        private double _offeredPrice { get; set; }
-        public ThreeOfASkuPromotion(double offeredPrice)
-        {
-            _offeredPrice = offeredPrice;
-        }
+        public double offeredPrice { get; set; }
+
+        public bool isActive { get; set; }
+
+        public Common.PromotionEnum name { get { return Common.PromotionEnum.ThreeOfASkuPromotion; } }
+        
 
         public void Apply(List<OrderItem> items)
         {
@@ -24,7 +25,7 @@ namespace Promotion.Business.PromotionStrategy
                 int quotient = (productsA.Quantity) / 3;
                 int remainder = (productsA.Quantity) % 3;
 
-                double price = (_offeredPrice * quotient) + (remainder * productsA.Price);
+                double price = (offeredPrice * quotient) + (remainder * productsA.Price);
                 productsA.DiscountedPrice = price;
                 productsA.IsDiscountApplied = true;
             }
